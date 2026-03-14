@@ -4,7 +4,7 @@ import prismaPlugin from './plugins/prisma'
 import authPlugin from './plugins/auth'
 import swaggerPlugin from './plugins/swagger'
 import errorHandlerPlugin from './plugins/error-handler'
-import notifyRoute from './modules/notify/notify.route'
+import messagesRoute from './modules/messages/messages.route'
 import logRoute from './modules/log/log.route'
 import apikeyRoute from './modules/apikey/apikey.route'
 
@@ -24,9 +24,9 @@ export async function buildApp() {
   await fastify.register(authPlugin)
   await fastify.register(errorHandlerPlugin)
 
-  await fastify.register(notifyRoute, { prefix: '/api/v1/notify' })
-  await fastify.register(logRoute,    { prefix: '/api/v1/logs' })
-  await fastify.register(apikeyRoute, { prefix: '/api/v1/apikeys' })
+  await fastify.register(messagesRoute, { prefix: '/api/v1/messages' })
+  await fastify.register(logRoute,      { prefix: '/api/v1/logs' })
+  await fastify.register(apikeyRoute,   { prefix: '/api/v1/apikeys' })
 
   fastify.get('/health', { schema: { hide: true } }, async () => ({
     status: 'ok',
