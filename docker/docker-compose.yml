@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  notify-bridge:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - notify-data:/app/data
+    env_file:
+      - ../.env
+    restart: unless-stopped
+
+volumes:
+  notify-data:
