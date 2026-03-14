@@ -9,7 +9,9 @@
     "start": "node dist/server.js",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
-    "db:dev": "prisma migrate dev"
+    "db:dev": "prisma migrate dev",
+    "test": "vitest --run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@fastify/swagger": "^9.0.0",
@@ -28,6 +30,7 @@
     "pino-pretty": "^13.0.0",
     "prisma": "^6.0.0",
     "tsx": "^4.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
   }
 }
