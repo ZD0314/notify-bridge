@@ -2,11 +2,11 @@
   "name": "notify-bridge",
   "version": "1.0.0",
   "description": "Lightweight notification aggregation service",
-  "main": "dist/app.js",
+  "main": "dist/server.js",
   "scripts": {
-    "dev": "tsx watch src/app.ts",
+    "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/app.js",
+    "start": "node dist/server.js",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:dev": "prisma migrate dev"

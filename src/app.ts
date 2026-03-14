@@ -3,11 +3,12 @@ import { config } from './config'
 import prismaPlugin from './plugins/prisma'
 import authPlugin from './plugins/auth'
 import swaggerPlugin from './plugins/swagger'
+import errorHandlerPlugin from './plugins/error-handler'
 import notifyRoute from './modules/notify/notify.route'
 import logRoute from './modules/log/log.route'
 import apikeyRoute from './modules/apikey/apikey.route'
 
-async function buildApp() {
+export async function buildApp() {
   const fastify = Fastify({
     logger: {
       level: config.server.nodeEnv === 'production' ? 'info' : 'debug',
@@ -17,28 +18,20 @@ async function buildApp() {
     },
   })
 
-  // 注册顺序：swagger → prisma → auth → routes
+  // 注册顺序：swagger → prisma → auth → error-handler → routes
   await fastify.register(swaggerPlugin)
   await fastify.register(prismaPlugin)
   await fastify.register(authPlugin)
+  await fastify.register(errorHandlerPlugin)
 
   await fastify.register(notifyRoute, { prefix: '/api/v1/notify' })
   await fastify.register(logRoute,    { prefix: '/api/v1/logs' })
   await fastify.register(apikeyRoute, { prefix: '/api/v1/apikeys' })
 
-  fastify.get('/health', { schema: { hide: true } }, async () => ({ status: 'ok' }))
+  fastify.get('/health', { schema: { hide: true } }, async () => ({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+  }))
 
   return fastify
 }
-
-async function main() {
-  const app = await buildApp()
-  try {
-    await app.listen({ port: config.server.port, host: config.server.host })
-  } catch (err) {
-    app.log.error(err)
-    process.exit(1)
-  }
-}
-
-main()
