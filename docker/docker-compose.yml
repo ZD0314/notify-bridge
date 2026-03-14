@@ -1,16 +1,28 @@
 version: '3.8'
+
 services:
   notify-bridge:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+    container_name: notify-bridge
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:3000"
     volumes:
       - notify-data:/app/data
     env_file:
       - ../.env
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/data/notify-bridge.db
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
 volumes:
   notify-data:
+    driver: local
