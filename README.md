@@ -171,7 +171,7 @@ if (result.isSuccess()) {
 }
 ```
 
-详细文档见 [Java 集成指南](docs/java-integration.md)
+详细文档见 [Java 集成指南](docs/java-integration.md) | [Spring Boot 集成指南](docs/spring-boot-integration.md)
 
 ## 🐳 Docker 部署
 
@@ -281,6 +281,7 @@ MIT License - 见 [LICENSE](LICENSE) 文件
 - [部署指南](docs/deployment.md)
 - [Docker 部署](docs/docker-deployment.md)
 - [Java 集成](docs/java-integration.md)
+- [Spring Boot 集成](docs/spring-boot-integration.md)
 - [提供者配置](docs/providers.md)
 - [打包指南](docs/packaging.md)
 - [GitHub 指南](docs/github-guide.md)
