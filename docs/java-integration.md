@@ -19,9 +19,13 @@
 </dependencies>
 ```
 
-### 2. 复制 NotifyClient.java
+### 2. 复制客户端代码
 
-从 `examples/java-client/src/main/java/com/example/notify/` 复制 `NotifyClient.java` 到你的项目。
+从 `examples/java-client/src/main/java/com/example/notify/` 复制以下文件到你的项目：
+
+- `NotifyClient.java` - 通知客户端
+- `SendResult.java` - 发送结果类
+- `ExceptionNotifier.java` - 异常监控通知器（可选）
 
 ### 3. 使用示例
 
@@ -73,6 +77,8 @@ public class Main {
 
 ### 异常监控（ExceptionNotifier.java）
 
+ExceptionNotifier 是一个高级工具类，可以自动捕获异常并发送通知，特别适合用于异常监控和性能告警。
+
 ```java
 public class ExceptionNotifier {
     private final NotifyClient client;
@@ -81,13 +87,17 @@ public class ExceptionNotifier {
         this.client = new NotifyClient(baseUrl, apiKey);
     }
 
+    /**
+     * 发送异常通知（包含堆栈跟踪）
+     */
     public void notifyException(Exception e, String context) {
         String title = "系统异常";
         String content = String.format(
-            "异常类型: %s\n错误信息: %s\n上下文: %s",
+            "异常类型: %s\n错误信息: %s\n上下文: %s\n时间: %s",
             e.getClass().getSimpleName(),
             e.getMessage(),
-            context
+            context,
+            java.time.LocalDateTime.now()
         );
 
         try {
@@ -96,7 +106,75 @@ public class ExceptionNotifier {
             System.err.println("发送通知失败: " + ex.getMessage());
         }
     }
+
+    /**
+     * 发送业务异常通知
+     */
+    public void notifyBusinessException(String businessName, String message, String context) {
+        String title = "业务异常: " + businessName;
+        String content = String.format(
+            "业务名称: %s\n错误信息: %s\n上下文: %s\n时间: %s",
+            businessName,
+            message,
+            context,
+            java.time.LocalDateTime.now()
+        );
+
+        try {
+            client.sendFeishu(title, content);
+        } catch (Exception e) {
+            System.err.println("发送业务异常通知失败: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 发送性能告警
+     */
+    public void notifyPerformanceAlert(String metric, double value, String threshold) {
+        String title = "性能告警: " + metric;
+        String content = String.format(
+            "指标: %s\n当前值: %.2f\n阈值: %s\n时间: %s",
+            metric,
+            value,
+            threshold,
+            java.time.LocalDateTime.now()
+        );
+
+        try {
+            client.sendFeishu(title, content);
+        } catch (Exception e) {
+            System.err.println("发送性能告警失败: " + e.getMessage());
+        }
+    }
 }
+```
+
+**使用示例：**
+
+```java
+ExceptionNotifier notifier = new ExceptionNotifier("http://localhost:3000", "nb_xxx");
+
+try {
+    // 业务逻辑
+    processOrder(orderId);
+} catch (Exception e) {
+    // 自动发送异常通知（包含堆栈跟踪）
+    notifier.notifyException(e, "处理订单: " + orderId);
+}
+
+// 业务异常通知
+notifier.notifyBusinessException(
+    "用户注册",
+    "用户名已存在",
+    "用户名: testuser"
+);
+
+// 性能告警
+notifier.notifyPerformanceAlert(
+    "CPU使用率",
+    85.5,
+    "80%"
+);
 ```
 
 ## Spring Boot 集成
