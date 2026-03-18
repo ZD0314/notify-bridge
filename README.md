@@ -28,7 +28,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/zm-bridge/notify-bridge.git
+git clone https://github.com/ZD0314/notify-bridge.git
 cd notify-bridge
 
 # 安装依赖
@@ -295,5 +295,5 @@ MIT License - 见 [LICENSE](LICENSE) 文件
 
 ## 📞 支持
 
-- 提交 Issue: https://github.com/zm-bridge/notify-bridge/issues
+- 提交 Issue: https://github.com/ZD0314/notify-bridge/issues
 - 邮件联系: 1665225546@qq.com
