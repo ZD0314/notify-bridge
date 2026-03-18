@@ -283,8 +283,6 @@ MIT License - 见 [LICENSE](LICENSE) 文件
 - [Java 集成](docs/java-integration.md)
 - [Spring Boot 集成](docs/spring-boot-integration.md)
 - [提供者配置](docs/providers.md)
-- [打包指南](docs/packaging.md)
-- [GitHub 指南](docs/github-guide.md)
 
 ## 🔧 技术栈
 
