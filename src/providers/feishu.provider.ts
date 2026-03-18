@@ -10,15 +10,19 @@ export class FeishuProvider extends BaseProvider {
     const url = payload.target || config.feishu.webhookUrl
     if (!url) return { success: false, error: 'No Feishu webhook URL provided' }
     try {
+      // 使用简单的 text 类型，避免富文本格式问题
+      const messageContent = payload.title
+        ? `**${payload.title}**\n\n${payload.content}`
+        : payload.content
+
       const res = await axios.post(url, {
-        msg_type: 'post',
+        msg_type: 'text',
         content: {
-          post: {
-            zh_cn: {
-              title: payload.title ?? '',
-              content: [[{ tag: 'text', text: payload.content }]],
-            },
-          },
+          text: messageContent,
+        },
+      }, {
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
         },
       })
       if (res.data?.code !== 0) return { success: false, error: `Feishu error: ${res.data?.msg}` }

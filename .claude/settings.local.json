@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl.exe -s http://localhost:3000/health)",
+      "Bash(curl.exe -X POST http://localhost:3000/api/v1/notify/send -H \"X-API-Key: nb_dcabda0c4bb01e44f1ba0b15cd7bfef3a3d7d58b75078bb3\" -H \"Content-Type: application/json; charset=utf-8\" -d \"{\"\"channel\"\":\"\"FEISHU\"\",\"\"title\"\":\"\"Test Title\"\",\"\"content\"\":\"\"Hello Feishu!\"\"}\")",
+      "Bash(curl.exe -X POST http://localhost:3000/api/v1/notify/send -H \"X-API-Key: nb_dcabda0c4bb01e44f1ba0b15cd7bfef3a3d7d58b75078bb3\" -H \"Content-Type: application/json; charset=utf-8\" -d \"{\"\"channel\"\":\"\"FEISHU\"\",\"\"title\"\":\"\"测试标题\"\",\"\"content\"\":\"\"Hello Feishu!\"\"}\")",
+      "Bash(chcp)",
+      "Bash(powershell -Command \"chcp\")",
+      "Bash(powershell -Command \"$OutputEncoding = [System.Text.Encoding]::UTF8; $headers = @{ ''X-API-Key'' = ''nb_dcabda0c4bb01e44f1ba0b15cd7bfef3a3d7d58b75078bb3''; ''Content-Type'' = ''application/json'' }; $body = ''{\"\"channel\"\":\"\"FEISHU\"\",\"\"title\"\":\"\"测试标题\"\",\"\"content\"\":\"\"Hello Feishu!\"\"}''; Invoke-RestMethod -Method POST -Uri ''http://localhost:3000/api/v1/notify/send'' -Headers $headers -Body $body\")",
+      "Bash(powershell -Command \"$OutputEncoding = [System.Text.Encoding]::UTF8; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8; $headers = @{ ''X-API-Key'' = ''nb_dcabda0c4bb01e44f1ba0b15cd7bfef3a3d7d58b75078bb3''; ''Content-Type'' = ''application/json'' }; $body = ''{\"\"channel\"\":\"\"FEISHU\"\",\"\"title\"\":\"\"测试标题\"\",\"\"content\"\":\"\"Hello Feishu!\"\"}''; Invoke-RestMethod -Method POST -Uri ''http://localhost:3000/api/v1/notify/send'' -Headers $headers -Body $body\")",
+      "Bash(powershell -File \"d:\\\\zm\\\\tip\\\\notify-bridge\\\\test-feishu.ps1\")",
+      "Bash(curl.exe -s \"http://localhost:3000/api/v1/logs?page=1&limit=5\" -H \"X-API-Key: nb_dcabda0c4bb01e44f1ba0b15cd7bfef3a3d7d58b75078bb3\")",
+      "Bash(python \"d:\\\\zm\\\\tip\\\\notify-bridge\\\\test-feishu.py\")",
+      "Bash(pip install:*)",
+      "Bash(curl.exe -s \"http://localhost:3000/api/v1/logs?page=1&limit=1\" -H \"X-API-Key: nb_dcabda0c4bb01e44f1ba0b15cd7bfef3a3d7d58b75078bb3\")",
+      "Bash(powershell -Command \"Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force\")",
+      "Bash(npm run:*)",
+      "Bash(curl.exe -s \"http://localhost:3000/api/v1/logs?page=1&limit=10\" -H \"X-API-Key: nb_dcabda0c4bb01e44f1ba0b15cd7bfef3a3d7d58b75078bb3\")",
+      "Bash(python -c \"import sys, json; data = json.load\\(sys.stdin\\); [print\\(f''''{item[\"\"id\"\"]}: {item[\"\"title\"\"]}''''\\) for item in data[''''items'''']]\")",
+      "Bash(powershell -Command \"Get-Process node -ErrorAction SilentlyContinue\")",
+      "Bash(npm test:*)",
+      "Bash(curl -s http://localhost:3000/health)",
+      "Bash(curl -X POST http://localhost:3000/api/v1/apikeys -H \"Content-Type: application/json\" -d '{\"\"name\"\": \"\"test-app\"\"}')",
+      "Bash(curl -X POST http://localhost:3000/api/v1/notify/send -H \"Content-Type: application/json\" -H \"X-API-Key: nb_e52fbfd25f6e2be642ee44e93a5edf98309df4ad3e31a3b5\" -d '{\"\"channel\"\": \"\"FEISHU\"\", \"\"title\"\": \"\"测试通知\"\", \"\"content\"\": \"\"这是一个来自Notify Bridge的测试消息\"\"}')",
+      "Bash(curl -X POST http://localhost:3000/api/v1/notify/send -H \"Content-Type: application/json\" -H \"X-API-Key: nb_e52fbfd25f6e2be642ee44e93a5edf98309df4ad3e31a3b5\" -d \"{\"\"channel\"\": \"\"FEISHU\"\", \"\"title\"\": \"\"测试通知\"\", \"\"content\"\": \"\"这是一个来自Notify Bridge的测试消息\"\"}\")",
+      "Bash(netstat -ano)",
+      "Bash(findstr :3000)",
+      "Bash(taskkill /PID 68772 /F)",
+      "Bash(taskkill /F /PID 68772)",
+      "Bash(powershell -Command \"Stop-Process -Id 68772 -Force\")",
+      "Bash(python test-send.py)",
+      "Bash(curl -s \"http://localhost:3000/api/v1/logs?page=1&limit=10\" -H \"X-API-Key: nb_e52fbfd25f6e2be642ee44e93a5edf98309df4ad3e31a3b5\")",
+      "Bash(curl -s http://localhost:3000/docs)",
+      "Bash(git add:*)"
+    ]
+  }
+}

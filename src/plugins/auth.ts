@@ -1,7 +1,7 @@
 import fp from 'fastify-plugin'
 import { FastifyPluginAsync } from 'fastify'
 
-const SKIP_PATHS = ['/health', '/docs']
+const SKIP_PATHS = ['/health', '/docs', '/api/v1/apikeys']
 
 const authPlugin: FastifyPluginAsync = fp(async (fastify) => {
   fastify.addHook('onRequest', async (request, reply) => {
