@@ -7,3 +7,7 @@ data/
 *.db-journal
 coverage/
 .nyc_output/
+.claude/
+examples/java-client/target/
+test-*.ps1
+test-*.py
